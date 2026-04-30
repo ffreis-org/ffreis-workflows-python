@@ -18,59 +18,59 @@ permissions:
 
 jobs:
   workflows-policy:
-    uses: FelipeFuhr/ffreis-workflows-general/.github/workflows/general-workflows-policy.yml@main
+    uses: FelipeFuhr/ffreis-workflows-general/.github/workflows/general-workflows-policy.yml@fc5fcac8c2cfe0ccd8d18b73383df445ec31e371 # main
 
   codeql-actions:
-    uses: FelipeFuhr/ffreis-workflows-general/.github/workflows/general-codeql.yml@main
+    uses: FelipeFuhr/ffreis-workflows-general/.github/workflows/general-codeql.yml@fc5fcac8c2cfe0ccd8d18b73383df445ec31e371 # main
     with:
       languages: actions
       source-root: .
       upload-sarif: false
 
   fmt:
-    uses: FelipeFuhr/ffreis-workflows-python/.github/workflows/python-fmt.yml@main
+    uses: FelipeFuhr/ffreis-workflows-python/.github/workflows/python-fmt.yml@8520f7c122cbdfd75a7a86c168e3bb1d31de5b23 # main
     with:
       working-directory: examples/hello
 
   lint:
-    uses: FelipeFuhr/ffreis-workflows-python/.github/workflows/python-lint.yml@main
+    uses: FelipeFuhr/ffreis-workflows-python/.github/workflows/python-lint.yml@8520f7c122cbdfd75a7a86c168e3bb1d31de5b23 # main
     with:
       working-directory: examples/hello
 
   test:
-    uses: FelipeFuhr/ffreis-workflows-python/.github/workflows/python-test.yml@main
+    uses: FelipeFuhr/ffreis-workflows-python/.github/workflows/python-test.yml@8520f7c122cbdfd75a7a86c168e3bb1d31de5b23 # main
     with:
       working-directory: examples/hello
 
   build:
-    uses: FelipeFuhr/ffreis-workflows-python/.github/workflows/python-build.yml@main
+    uses: FelipeFuhr/ffreis-workflows-python/.github/workflows/python-build.yml@8520f7c122cbdfd75a7a86c168e3bb1d31de5b23 # main
     with:
       working-directory: examples/hello
 
   lock-sync:
-    uses: FelipeFuhr/ffreis-workflows-python/.github/workflows/python-lock-sync.yml@main
+    uses: FelipeFuhr/ffreis-workflows-python/.github/workflows/python-lock-sync.yml@8520f7c122cbdfd75a7a86c168e3bb1d31de5b23 # main
     with:
       working-directory: examples/hello
 
   security:
-    uses: FelipeFuhr/ffreis-workflows-python/.github/workflows/python-security.yml@main
+    uses: FelipeFuhr/ffreis-workflows-python/.github/workflows/python-security.yml@8520f7c122cbdfd75a7a86c168e3bb1d31de5b23 # main
     with:
       working-directory: examples/hello
       fail-on-vuln: false
 
   semgrep:
-    uses: FelipeFuhr/ffreis-workflows-python/.github/workflows/python-semgrep.yml@main
+    uses: FelipeFuhr/ffreis-workflows-python/.github/workflows/python-semgrep.yml@8520f7c122cbdfd75a7a86c168e3bb1d31de5b23 # main
     with:
       working-directory: examples/hello
 
   hypothesis:
-    uses: FelipeFuhr/ffreis-workflows-python/.github/workflows/python-hypothesis.yml@main
+    uses: FelipeFuhr/ffreis-workflows-python/.github/workflows/python-hypothesis.yml@8520f7c122cbdfd75a7a86c168e3bb1d31de5b23 # main
     with:
       working-directory: examples/hello
       test-dir: tests/hypothesis_tests
 
   coverage:
-    uses: FelipeFuhr/ffreis-workflows-python/.github/workflows/python-coverage.yml@main
+    uses: FelipeFuhr/ffreis-workflows-python/.github/workflows/python-coverage.yml@8520f7c122cbdfd75a7a86c168e3bb1d31de5b23 # main
     with:
       working-directory: examples/hello
     secrets:
@@ -78,31 +78,31 @@ jobs:
 
   sonar:
     if: github.event_name != 'pull_request' || github.event.pull_request.head.repo.fork == false
-    uses: FelipeFuhr/ffreis-workflows-python/.github/workflows/python-sonar.yml@main
+    uses: FelipeFuhr/ffreis-workflows-python/.github/workflows/python-sonar.yml@8520f7c122cbdfd75a7a86c168e3bb1d31de5b23 # main
     with:
       working-directory: examples/hello
     secrets:
       SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
 
   docs:
-    uses: FelipeFuhr/ffreis-workflows-python/.github/workflows/python-docs.yml@main
+    uses: FelipeFuhr/ffreis-workflows-python/.github/workflows/python-docs.yml@8520f7c122cbdfd75a7a86c168e3bb1d31de5b23 # main
     with:
       working-directory: examples/hello
 
   bench:
-    uses: FelipeFuhr/ffreis-workflows-python/.github/workflows/python-bench.yml@main
+    uses: FelipeFuhr/ffreis-workflows-python/.github/workflows/python-bench.yml@8520f7c122cbdfd75a7a86c168e3bb1d31de5b23 # main
     with:
       working-directory: examples/hello
 
   mutation:
-    uses: FelipeFuhr/ffreis-workflows-python/.github/workflows/python-mutation.yml@main
+    uses: FelipeFuhr/ffreis-workflows-python/.github/workflows/python-mutation.yml@8520f7c122cbdfd75a7a86c168e3bb1d31de5b23 # main
     with:
       working-directory: examples/hello
       paths-to-mutate: src
       threshold: 60
 
   container:
-    uses: FelipeFuhr/ffreis-workflows-python/.github/workflows/python-container.yml@main
+    uses: FelipeFuhr/ffreis-workflows-python/.github/workflows/python-container.yml@8520f7c122cbdfd75a7a86c168e3bb1d31de5b23 # main
     with:
       image-name: hello-example
       context: examples/hello
