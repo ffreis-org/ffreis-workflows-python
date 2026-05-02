@@ -18,59 +18,103 @@ permissions:
 
 jobs:
   workflows-policy:
-    uses: FelipeFuhr/ffreis-workflows-general/.github/workflows/general-workflows-policy.yml@main
+    permissions:
+      contents: read
+      actions: read
+      security-events: write
+    uses: FelipeFuhr/ffreis-workflows-general/.github/workflows/general-workflows-policy.yml@a02d736d25fa99fca8b4b623af9467d7afc472a4 # v1.0.3
 
   codeql-actions:
-    uses: FelipeFuhr/ffreis-workflows-general/.github/workflows/general-codeql.yml@main
+    permissions:
+      contents: read
+      actions: read
+      security-events: write
+    uses: FelipeFuhr/ffreis-workflows-general/.github/workflows/general-codeql.yml@a02d736d25fa99fca8b4b623af9467d7afc472a4 # v1.0.3
     with:
       languages: actions
       source-root: .
       upload-sarif: false
 
   fmt:
-    uses: FelipeFuhr/ffreis-workflows-python/.github/workflows/python-fmt.yml@main
+    permissions:
+      contents: read
+      actions: read
+      security-events: write
+    uses: ./.github/workflows/python-fmt.yml
     with:
       working-directory: examples/hello
 
   lint:
-    uses: FelipeFuhr/ffreis-workflows-python/.github/workflows/python-lint.yml@main
+    permissions:
+      contents: read
+      actions: read
+      security-events: write
+    uses: ./.github/workflows/python-lint.yml
     with:
       working-directory: examples/hello
 
   test:
-    uses: FelipeFuhr/ffreis-workflows-python/.github/workflows/python-test.yml@main
+    permissions:
+      contents: read
+      actions: read
+      security-events: write
+    uses: ./.github/workflows/python-test.yml
     with:
       working-directory: examples/hello
 
   build:
-    uses: FelipeFuhr/ffreis-workflows-python/.github/workflows/python-build.yml@main
+    permissions:
+      contents: read
+      actions: read
+      security-events: write
+    uses: ./.github/workflows/python-build.yml
     with:
       working-directory: examples/hello
 
   lock-sync:
-    uses: FelipeFuhr/ffreis-workflows-python/.github/workflows/python-lock-sync.yml@main
+    permissions:
+      contents: read
+      actions: read
+      security-events: write
+    uses: ./.github/workflows/python-lock-sync.yml
     with:
       working-directory: examples/hello
 
   security:
-    uses: FelipeFuhr/ffreis-workflows-python/.github/workflows/python-security.yml@main
+    permissions:
+      contents: read
+      actions: read
+      security-events: write
+    uses: ./.github/workflows/python-security.yml
     with:
       working-directory: examples/hello
       fail-on-vuln: false
 
   semgrep:
-    uses: FelipeFuhr/ffreis-workflows-python/.github/workflows/python-semgrep.yml@main
+    permissions:
+      contents: read
+      actions: read
+      security-events: write
+    uses: ./.github/workflows/python-semgrep.yml
     with:
       working-directory: examples/hello
 
   hypothesis:
-    uses: FelipeFuhr/ffreis-workflows-python/.github/workflows/python-hypothesis.yml@main
+    permissions:
+      contents: read
+      actions: read
+      security-events: write
+    uses: ./.github/workflows/python-hypothesis.yml
     with:
       working-directory: examples/hello
       test-dir: tests/hypothesis_tests
 
   coverage:
-    uses: FelipeFuhr/ffreis-workflows-python/.github/workflows/python-coverage.yml@main
+    permissions:
+      contents: read
+      actions: read
+      security-events: write
+    uses: ./.github/workflows/python-coverage.yml
     with:
       working-directory: examples/hello
     secrets:
@@ -78,31 +122,47 @@ jobs:
 
   sonar:
     if: github.event_name != 'pull_request' || github.event.pull_request.head.repo.fork == false
-    uses: FelipeFuhr/ffreis-workflows-python/.github/workflows/python-sonar.yml@main
+    permissions:
+      contents: read
+      actions: read
+      security-events: write
+    uses: ./.github/workflows/python-sonar.yml
     with:
       working-directory: examples/hello
     secrets:
       SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
 
   docs:
-    uses: FelipeFuhr/ffreis-workflows-python/.github/workflows/python-docs.yml@main
+    permissions:
+      contents: read
+      actions: read
+      security-events: write
+    uses: ./.github/workflows/python-docs.yml
     with:
       working-directory: examples/hello
 
   bench:
-    uses: FelipeFuhr/ffreis-workflows-python/.github/workflows/python-bench.yml@main
+    permissions:
+      contents: read
+      actions: read
+      security-events: write
+    uses: ./.github/workflows/python-bench.yml
     with:
       working-directory: examples/hello
 
   mutation:
-    uses: FelipeFuhr/ffreis-workflows-python/.github/workflows/python-mutation.yml@main
+    permissions:
+      contents: read
+      actions: read
+      security-events: write
+    uses: ./.github/workflows/python-mutation.yml
     with:
       working-directory: examples/hello
       paths-to-mutate: src
       threshold: 60
 
   container:
-    uses: FelipeFuhr/ffreis-workflows-python/.github/workflows/python-container.yml@main
+    uses: ./.github/workflows/python-container.yml
     with:
       image-name: hello-example
       context: examples/hello

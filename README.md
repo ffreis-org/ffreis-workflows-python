@@ -2,11 +2,14 @@
 
 Reusable GitHub Actions workflows for Python projects in the ffreis organisation.
 
-All workflows use `on: workflow_call:` and are consumed from other repos with:
+
+All workflows use `on: workflow_call:` and should be consumed from other repos by pinning to a specific commit SHA for reproducibility and security. Example:
 
 ```yaml
-uses: ffreis/ffreis-platform-workflows-python/.github/workflows/<file>.yml@main
+uses: ffreis/ffreis-platform-workflows-python/.github/workflows/<file>.yml@<sha>
 ```
+
+Replace `<sha>` with the latest commit SHA from the target workflow repository. Avoid using @main or @vX tags for production workflows.
 
 ---
 
@@ -36,7 +39,7 @@ uses: ffreis/ffreis-platform-workflows-python/.github/workflows/<file>.yml@main
 ```yaml
 jobs:
   fmt:
-    uses: ffreis/ffreis-platform-workflows-python/.github/workflows/python-fmt.yml@main
+    uses: ffreis/ffreis-platform-workflows-python/.github/workflows/python-fmt.yml@<sha> # latest
     with:
       source-dirs: "src tests"
 ```
@@ -46,7 +49,7 @@ jobs:
 ```yaml
 jobs:
   lint:
-    uses: ffreis/ffreis-platform-workflows-python/.github/workflows/python-lint.yml@main
+    uses: ffreis/ffreis-platform-workflows-python/.github/workflows/python-lint.yml@<sha> # latest
     with:
       source-dirs: "src tests"
       mypy-dirs: "src"
@@ -57,7 +60,7 @@ jobs:
 ```yaml
 jobs:
   test:
-    uses: ffreis/ffreis-platform-workflows-python/.github/workflows/python-test.yml@main
+    uses: ffreis/ffreis-platform-workflows-python/.github/workflows/python-test.yml@<sha> # latest
     with:
       test-dir: "tests/unit_tests"
       pytest-args: "-q --tb=short"
@@ -68,7 +71,7 @@ jobs:
 ```yaml
 jobs:
   build:
-    uses: ffreis/ffreis-platform-workflows-python/.github/workflows/python-build.yml@main
+    uses: ffreis/ffreis-platform-workflows-python/.github/workflows/python-build.yml@<sha> # latest
     with:
       python-versions: '["3.13","3.11","3.10"]'
       os-list: '["ubuntu-latest","macos-latest"]'
@@ -84,7 +87,7 @@ on:
 
 jobs:
   security:
-    uses: ffreis/ffreis-platform-workflows-python/.github/workflows/python-security.yml@main
+    uses: ffreis/ffreis-platform-workflows-python/.github/workflows/python-security.yml@<sha> # latest
 ```
 
 ### Coverage + Codecov
@@ -92,7 +95,7 @@ jobs:
 ```yaml
 jobs:
   coverage:
-    uses: ffreis/ffreis-platform-workflows-python/.github/workflows/python-coverage.yml@main
+    uses: ffreis/ffreis-platform-workflows-python/.github/workflows/python-coverage.yml@<sha> # latest
     with:
       coverage-command: "uv run pytest --cov=src --cov-report=xml tests/unit_tests"
     secrets:
@@ -104,7 +107,7 @@ jobs:
 ```yaml
 jobs:
   container:
-    uses: ffreis/ffreis-platform-workflows-python/.github/workflows/python-container.yml@main
+    uses: ffreis/ffreis-platform-workflows-python/.github/workflows/python-container.yml@<sha> # latest
     with:
       image-name: "my-app:latest"
       containerfile: "Containerfile"
@@ -115,7 +118,7 @@ jobs:
 ```yaml
 jobs:
   lock-sync:
-    uses: ffreis/ffreis-platform-workflows-python/.github/workflows/python-lock-sync.yml@main
+    uses: ffreis/ffreis-platform-workflows-python/.github/workflows/python-lock-sync.yml@<sha> # latest
 ```
 
 ### Hypothesis property tests
@@ -123,7 +126,7 @@ jobs:
 ```yaml
 jobs:
   hypothesis:
-    uses: ffreis/ffreis-platform-workflows-python/.github/workflows/python-hypothesis.yml@main
+    uses: ffreis/ffreis-platform-workflows-python/.github/workflows/python-hypothesis.yml@<sha> # latest
     with:
       test-dir: "tests/hypothesis_tests"
       hypothesis-profile: "ci"
@@ -134,7 +137,7 @@ jobs:
 ```yaml
 jobs:
   semgrep:
-    uses: ffreis/ffreis-platform-workflows-python/.github/workflows/python-semgrep.yml@main
+    uses: ffreis/ffreis-platform-workflows-python/.github/workflows/python-semgrep.yml@<sha> # latest
     with:
       config: "auto"
 ```
@@ -144,7 +147,7 @@ jobs:
 ```yaml
 jobs:
   docs:
-    uses: ffreis/ffreis-platform-workflows-python/.github/workflows/python-docs.yml@main
+    uses: ffreis/ffreis-platform-workflows-python/.github/workflows/python-docs.yml@<sha> # latest
     with:
       docs-command: "uv run mkdocs build --strict"
       uv-extras: "docs"
@@ -160,7 +163,7 @@ on:
 
 jobs:
   bench:
-    uses: ffreis/ffreis-platform-workflows-python/.github/workflows/python-bench.yml@main
+    uses: ffreis/ffreis-platform-workflows-python/.github/workflows/python-bench.yml@<sha> # latest
     with:
       bench-dir: "benchmarks/"
 ```
@@ -169,8 +172,8 @@ jobs:
 
 ## Conventions
 
-- `actions/checkout@v6`
-- `actions/setup-python@v6`
+- `actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6`
+- `actions/setup-python@a309ff8b426b58ec0e2a45f0f869d46889d02405 # v6.2.0`
 - `astral-sh/setup-uv@eac588ad8def6316056a12d4907a9d4d84ff7a3b` (pinned SHA)
 - All multi-line `run:` blocks begin with `set -euo pipefail`
 - `uv.lock` presence is asserted before every `uv sync`

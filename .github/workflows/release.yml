@@ -1,0 +1,24 @@
+# Workflow: release-please for aggregator
+# This workflow enables automatic releases using release-please for this workflow aggregator repo.
+
+name: Release Please
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pull-requests: write
+  issues: write
+
+jobs:
+  release-please:
+    uses: FelipeFuhr/ffreis-workflows-general/.github/workflows/general-release-please.yml@a02d736d25fa99fca8b4b623af9467d7afc472a4 # v1.0.3
+    with:
+      dry-run: false
+      config-file: .release-please-config.json
+      manifest-file: .release-please-manifest.json
+      target-branch: main
