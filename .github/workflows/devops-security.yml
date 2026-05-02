@@ -21,10 +21,14 @@ jobs:
       actions: read
       security-events: write
 <<<<<<< HEAD
+<<<<<<< HEAD
     uses: FelipeFuhr/ffreis-workflows-general/.github/workflows/general-gitleaks.yml@fc5fcac8c2cfe0ccd8d18b73383df445ec31e371
 =======
     uses: FelipeFuhr/ffreis-workflows-general/.github/workflows/general-gitleaks.yml@9122525162705ed0676ed066e788f2e531a25bea # v1.0.0
 >>>>>>> 3e9077a (chore: update ffreis-workflows-general pins to v1.0.0)
+=======
+    uses: FelipeFuhr/ffreis-workflows-general/.github/workflows/general-gitleaks.yml@2c051eb6d9aa5ecea3e969d7e2fd2b4e21a002d6 # v1.0.1
+>>>>>>> d1a7783 (chore: update ffreis-workflows-general pins to v1.0.1)
     with:
       working-directory: "."
       scan-history: true
@@ -36,10 +40,14 @@ jobs:
       actions: read
       security-events: write
 <<<<<<< HEAD
+<<<<<<< HEAD
     uses: FelipeFuhr/ffreis-workflows-general/.github/workflows/general-scan-trivy-fs.yml@fc5fcac8c2cfe0ccd8d18b73383df445ec31e371
 =======
     uses: FelipeFuhr/ffreis-workflows-general/.github/workflows/general-scan-trivy-fs.yml@9122525162705ed0676ed066e788f2e531a25bea # v1.0.0
 >>>>>>> 3e9077a (chore: update ffreis-workflows-general pins to v1.0.0)
+=======
+    uses: FelipeFuhr/ffreis-workflows-general/.github/workflows/general-scan-trivy-fs.yml@2c051eb6d9aa5ecea3e969d7e2fd2b4e21a002d6 # v1.0.1
+>>>>>>> d1a7783 (chore: update ffreis-workflows-general pins to v1.0.1)
     with:
       scan-ref: "."
       upload-sarif: ${{ github.event_name != 'pull_request' || github.event.pull_request.head.repo.fork == false }}
@@ -51,10 +59,14 @@ jobs:
       actions: read
       security-events: write
 <<<<<<< HEAD
+<<<<<<< HEAD
     uses: FelipeFuhr/ffreis-workflows-general/.github/workflows/general-scan-grype-fs.yml@fc5fcac8c2cfe0ccd8d18b73383df445ec31e371
 =======
     uses: FelipeFuhr/ffreis-workflows-general/.github/workflows/general-scan-grype-fs.yml@9122525162705ed0676ed066e788f2e531a25bea # v1.0.0
 >>>>>>> 3e9077a (chore: update ffreis-workflows-general pins to v1.0.0)
+=======
+    uses: FelipeFuhr/ffreis-workflows-general/.github/workflows/general-scan-grype-fs.yml@2c051eb6d9aa5ecea3e969d7e2fd2b4e21a002d6 # v1.0.1
+>>>>>>> d1a7783 (chore: update ffreis-workflows-general pins to v1.0.1)
     with:
       path: "."
       upload-sarif: ${{ github.event_name != 'pull_request' || github.event.pull_request.head.repo.fork == false }}
@@ -66,10 +78,14 @@ jobs:
       actions: read
       security-events: write
 <<<<<<< HEAD
+<<<<<<< HEAD
     uses: FelipeFuhr/ffreis-workflows-general/.github/workflows/general-osv-scanner.yml@fc5fcac8c2cfe0ccd8d18b73383df445ec31e371
 =======
     uses: FelipeFuhr/ffreis-workflows-general/.github/workflows/general-osv-scanner.yml@9122525162705ed0676ed066e788f2e531a25bea # v1.0.0
 >>>>>>> 3e9077a (chore: update ffreis-workflows-general pins to v1.0.0)
+=======
+    uses: FelipeFuhr/ffreis-workflows-general/.github/workflows/general-osv-scanner.yml@2c051eb6d9aa5ecea3e969d7e2fd2b4e21a002d6 # v1.0.1
+>>>>>>> d1a7783 (chore: update ffreis-workflows-general pins to v1.0.1)
     with:
       working-directory: "."
       upload-sarif: ${{ github.event_name != 'pull_request' || github.event.pull_request.head.repo.fork == false }}
