@@ -42,7 +42,7 @@ jobs:
       contents: read
       actions: read
       security-events: write
-    uses: FelipeFuhr/ffreis-workflows-python/.github/workflows/python-fmt.yml@8520f7c122cbdfd75a7a86c168e3bb1d31de5b23 # main
+    uses: FelipeFuhr/ffreis-workflows-python/.github/workflows/python-fmt.yml@main # NOSONAR: self-referential — pinning to a SHA creates a bootstrap cycle
     with:
       working-directory: examples/hello
 
@@ -51,7 +51,7 @@ jobs:
       contents: read
       actions: read
       security-events: write
-    uses: FelipeFuhr/ffreis-workflows-python/.github/workflows/python-lint.yml@8520f7c122cbdfd75a7a86c168e3bb1d31de5b23 # main
+    uses: FelipeFuhr/ffreis-workflows-python/.github/workflows/python-lint.yml@main # NOSONAR: self-referential — pinning to a SHA creates a bootstrap cycle
     with:
       working-directory: examples/hello
 
@@ -60,7 +60,7 @@ jobs:
       contents: read
       actions: read
       security-events: write
-    uses: FelipeFuhr/ffreis-workflows-python/.github/workflows/python-test.yml@8520f7c122cbdfd75a7a86c168e3bb1d31de5b23 # main
+    uses: FelipeFuhr/ffreis-workflows-python/.github/workflows/python-test.yml@main # NOSONAR: self-referential — pinning to a SHA creates a bootstrap cycle
     with:
       working-directory: examples/hello
 
@@ -69,7 +69,7 @@ jobs:
       contents: read
       actions: read
       security-events: write
-    uses: FelipeFuhr/ffreis-workflows-python/.github/workflows/python-build.yml@8520f7c122cbdfd75a7a86c168e3bb1d31de5b23 # main
+    uses: FelipeFuhr/ffreis-workflows-python/.github/workflows/python-build.yml@main # NOSONAR: self-referential — pinning to a SHA creates a bootstrap cycle
     with:
       working-directory: examples/hello
 
@@ -78,7 +78,7 @@ jobs:
       contents: read
       actions: read
       security-events: write
-    uses: FelipeFuhr/ffreis-workflows-python/.github/workflows/python-lock-sync.yml@8520f7c122cbdfd75a7a86c168e3bb1d31de5b23 # main
+    uses: FelipeFuhr/ffreis-workflows-python/.github/workflows/python-lock-sync.yml@main # NOSONAR: self-referential — pinning to a SHA creates a bootstrap cycle
     with:
       working-directory: examples/hello
 
@@ -87,7 +87,7 @@ jobs:
       contents: read
       actions: read
       security-events: write
-    uses: FelipeFuhr/ffreis-workflows-python/.github/workflows/python-security.yml@8520f7c122cbdfd75a7a86c168e3bb1d31de5b23 # main
+    uses: FelipeFuhr/ffreis-workflows-python/.github/workflows/python-security.yml@main # NOSONAR: self-referential — pinning to a SHA creates a bootstrap cycle
     with:
       working-directory: examples/hello
       fail-on-vuln: false
@@ -97,7 +97,7 @@ jobs:
       contents: read
       actions: read
       security-events: write
-    uses: FelipeFuhr/ffreis-workflows-python/.github/workflows/python-semgrep.yml@8520f7c122cbdfd75a7a86c168e3bb1d31de5b23 # main
+    uses: FelipeFuhr/ffreis-workflows-python/.github/workflows/python-semgrep.yml@main # NOSONAR: self-referential — pinning to a SHA creates a bootstrap cycle
     with:
       working-directory: examples/hello
 
@@ -106,7 +106,7 @@ jobs:
       contents: read
       actions: read
       security-events: write
-    uses: FelipeFuhr/ffreis-workflows-python/.github/workflows/python-hypothesis.yml@8520f7c122cbdfd75a7a86c168e3bb1d31de5b23 # main
+    uses: FelipeFuhr/ffreis-workflows-python/.github/workflows/python-hypothesis.yml@main # NOSONAR: self-referential — pinning to a SHA creates a bootstrap cycle
     with:
       working-directory: examples/hello
       test-dir: tests/hypothesis_tests
@@ -116,7 +116,7 @@ jobs:
       contents: read
       actions: read
       security-events: write
-    uses: FelipeFuhr/ffreis-workflows-python/.github/workflows/python-coverage.yml@8520f7c122cbdfd75a7a86c168e3bb1d31de5b23 # main
+    uses: FelipeFuhr/ffreis-workflows-python/.github/workflows/python-coverage.yml@main # NOSONAR: self-referential — pinning to a SHA creates a bootstrap cycle
     with:
       working-directory: examples/hello
     secrets:
@@ -128,7 +128,7 @@ jobs:
       contents: read
       actions: read
       security-events: write
-    uses: FelipeFuhr/ffreis-workflows-python/.github/workflows/python-sonar.yml@8520f7c122cbdfd75a7a86c168e3bb1d31de5b23 # main
+    uses: FelipeFuhr/ffreis-workflows-python/.github/workflows/python-sonar.yml@main # NOSONAR: self-referential — pinning to a SHA creates a bootstrap cycle
     with:
       working-directory: examples/hello
     secrets:
@@ -139,7 +139,7 @@ jobs:
       contents: read
       actions: read
       security-events: write
-    uses: FelipeFuhr/ffreis-workflows-python/.github/workflows/python-docs.yml@8520f7c122cbdfd75a7a86c168e3bb1d31de5b23 # main
+    uses: FelipeFuhr/ffreis-workflows-python/.github/workflows/python-docs.yml@main # NOSONAR: self-referential — pinning to a SHA creates a bootstrap cycle
     with:
       working-directory: examples/hello
 
@@ -148,7 +148,7 @@ jobs:
       contents: read
       actions: read
       security-events: write
-    uses: FelipeFuhr/ffreis-workflows-python/.github/workflows/python-bench.yml@8520f7c122cbdfd75a7a86c168e3bb1d31de5b23 # main
+    uses: FelipeFuhr/ffreis-workflows-python/.github/workflows/python-bench.yml@main # NOSONAR: self-referential — pinning to a SHA creates a bootstrap cycle
     with:
       working-directory: examples/hello
 
@@ -157,14 +157,14 @@ jobs:
       contents: read
       actions: read
       security-events: write
-    uses: FelipeFuhr/ffreis-workflows-python/.github/workflows/python-mutation.yml@8520f7c122cbdfd75a7a86c168e3bb1d31de5b23 # main
+    uses: FelipeFuhr/ffreis-workflows-python/.github/workflows/python-mutation.yml@main # NOSONAR: self-referential — pinning to a SHA creates a bootstrap cycle
     with:
       working-directory: examples/hello
       paths-to-mutate: src
       threshold: 60
 
   container:
-    uses: FelipeFuhr/ffreis-workflows-python/.github/workflows/python-container.yml@8520f7c122cbdfd75a7a86c168e3bb1d31de5b23 # main
+    uses: FelipeFuhr/ffreis-workflows-python/.github/workflows/python-container.yml@main # NOSONAR: self-referential — pinning to a SHA creates a bootstrap cycle
     with:
       image-name: hello-example
       context: examples/hello
