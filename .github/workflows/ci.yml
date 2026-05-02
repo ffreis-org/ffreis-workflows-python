@@ -17,8 +17,6 @@ permissions:
 # but runs on all other events and fails if the token is absent.
 
 jobs:
-  env:
-    FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
   workflows-policy:
     permissions:
       contents: read
