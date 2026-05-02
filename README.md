@@ -6,7 +6,7 @@ Reusable GitHub Actions workflows for Python projects in the ffreis organisation
 All workflows use `on: workflow_call:` and should be consumed from other repos by pinning to a specific commit SHA for reproducibility and security. Example:
 
 ```yaml
-uses: ffreis/ffreis-platform-workflows-python/.github/workflows/<file>.yml@<sha> # latest
+uses: ffreis/ffreis-platform-workflows-python/.github/workflows/<file>.yml@<sha>
 ```
 
 Replace `<sha>` with the latest commit SHA from the target workflow repository. Avoid using @main or @vX tags for production workflows.
@@ -172,8 +172,8 @@ jobs:
 
 ## Conventions
 
-- `actions/checkout@8f4b7f8e8e8e8e8e8e8e8e8e8e8e8e8e8e8e8e8 # v6`
-- `actions/setup-python@b7c8d9e8e8e8e8e8e8e8e8e8e8e8e8e8e8e8e8 # v6`
+- `actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6`
+- `actions/setup-python@a309ff8b426b58ec0e2a45f0f869d46889d02405 # v6.2.0`
 - `astral-sh/setup-uv@eac588ad8def6316056a12d4907a9d4d84ff7a3b` (pinned SHA)
 - All multi-line `run:` blocks begin with `set -euo pipefail`
 - `uv.lock` presence is asserted before every `uv sync`
