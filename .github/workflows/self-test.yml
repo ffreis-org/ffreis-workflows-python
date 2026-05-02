@@ -28,49 +28,49 @@ jobs:
       upload-sarif: false
 
   fmt:
-    uses: FelipeFuhr/ffreis-workflows-python/.github/workflows/python-fmt.yml@main # NOSONAR: self-referential — pinning to a SHA creates a bootstrap cycle
+    uses: ./.github/workflows/python-fmt.yml
     with:
       working-directory: examples/hello
 
   lint:
-    uses: FelipeFuhr/ffreis-workflows-python/.github/workflows/python-lint.yml@main # NOSONAR: self-referential — pinning to a SHA creates a bootstrap cycle
+    uses: ./.github/workflows/python-lint.yml
     with:
       working-directory: examples/hello
 
   test:
-    uses: FelipeFuhr/ffreis-workflows-python/.github/workflows/python-test.yml@main # NOSONAR: self-referential — pinning to a SHA creates a bootstrap cycle
+    uses: ./.github/workflows/python-test.yml
     with:
       working-directory: examples/hello
 
   build:
-    uses: FelipeFuhr/ffreis-workflows-python/.github/workflows/python-build.yml@main # NOSONAR: self-referential — pinning to a SHA creates a bootstrap cycle
+    uses: ./.github/workflows/python-build.yml
     with:
       working-directory: examples/hello
 
   lock-sync:
-    uses: FelipeFuhr/ffreis-workflows-python/.github/workflows/python-lock-sync.yml@main # NOSONAR: self-referential — pinning to a SHA creates a bootstrap cycle
+    uses: ./.github/workflows/python-lock-sync.yml
     with:
       working-directory: examples/hello
 
   security:
-    uses: FelipeFuhr/ffreis-workflows-python/.github/workflows/python-security.yml@main # NOSONAR: self-referential — pinning to a SHA creates a bootstrap cycle
+    uses: ./.github/workflows/python-security.yml
     with:
       working-directory: examples/hello
       fail-on-vuln: false
 
   semgrep:
-    uses: FelipeFuhr/ffreis-workflows-python/.github/workflows/python-semgrep.yml@main # NOSONAR: self-referential — pinning to a SHA creates a bootstrap cycle
+    uses: ./.github/workflows/python-semgrep.yml
     with:
       working-directory: examples/hello
 
   hypothesis:
-    uses: FelipeFuhr/ffreis-workflows-python/.github/workflows/python-hypothesis.yml@main # NOSONAR: self-referential — pinning to a SHA creates a bootstrap cycle
+    uses: ./.github/workflows/python-hypothesis.yml
     with:
       working-directory: examples/hello
       test-dir: tests/hypothesis_tests
 
   coverage:
-    uses: FelipeFuhr/ffreis-workflows-python/.github/workflows/python-coverage.yml@main # NOSONAR: self-referential — pinning to a SHA creates a bootstrap cycle
+    uses: ./.github/workflows/python-coverage.yml
     with:
       working-directory: examples/hello
     secrets:
@@ -78,31 +78,31 @@ jobs:
 
   sonar:
     if: github.event_name != 'pull_request' || github.event.pull_request.head.repo.fork == false
-    uses: FelipeFuhr/ffreis-workflows-python/.github/workflows/python-sonar.yml@main # NOSONAR: self-referential — pinning to a SHA creates a bootstrap cycle
+    uses: ./.github/workflows/python-sonar.yml
     with:
       working-directory: examples/hello
     secrets:
       SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
 
   docs:
-    uses: FelipeFuhr/ffreis-workflows-python/.github/workflows/python-docs.yml@main # NOSONAR: self-referential — pinning to a SHA creates a bootstrap cycle
+    uses: ./.github/workflows/python-docs.yml
     with:
       working-directory: examples/hello
 
   bench:
-    uses: FelipeFuhr/ffreis-workflows-python/.github/workflows/python-bench.yml@main # NOSONAR: self-referential — pinning to a SHA creates a bootstrap cycle
+    uses: ./.github/workflows/python-bench.yml
     with:
       working-directory: examples/hello
 
   mutation:
-    uses: FelipeFuhr/ffreis-workflows-python/.github/workflows/python-mutation.yml@main # NOSONAR: self-referential — pinning to a SHA creates a bootstrap cycle
+    uses: ./.github/workflows/python-mutation.yml
     with:
       working-directory: examples/hello
       paths-to-mutate: src
       threshold: 60
 
   container:
-    uses: FelipeFuhr/ffreis-workflows-python/.github/workflows/python-container.yml@main # NOSONAR: self-referential — pinning to a SHA creates a bootstrap cycle
+    uses: ./.github/workflows/python-container.yml
     with:
       image-name: hello-example
       context: examples/hello
