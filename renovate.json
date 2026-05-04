@@ -1,11 +1,4 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
-  "extends": ["config:base"],
-  "packageRules": [
-    {
-      "matchManagers": ["github-actions"],
-      "automerge": true,
-      "automergeType": "pr"
-    }
-  ]
+  "extends": ["github>FelipeFuhr/ffreis-platform-standards:renovate/github-actions"]
 }
