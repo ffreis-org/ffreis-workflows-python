@@ -16,6 +16,10 @@ permissions:
 # job is skipped on fork pull requests (secrets are not available to forks),
 # but runs on all other events and fails if the token is absent.
 
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
 jobs:
   workflows-policy:
     uses: FelipeFuhr/ffreis-workflows-general/.github/workflows/general-workflows-policy.yml@01e2b12e992621fecf074b8a202f66044196f3bf # v1.0.4
