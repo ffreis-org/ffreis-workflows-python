@@ -17,6 +17,7 @@ permissions:
 
 jobs:
   lock-sync:
+    timeout-minutes: 15
     name: uv lock --check
     runs-on: ubuntu-latest
 

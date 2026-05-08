@@ -29,6 +29,7 @@ permissions:
 
 jobs:
   lint:
+    timeout-minutes: 15
     name: Ruff + Mypy
     runs-on: ubuntu-latest
 

@@ -43,6 +43,7 @@ permissions:
 
 jobs:
   coverage:
+    timeout-minutes: 30
     name: Unit Coverage
     runs-on: ubuntu-latest
 

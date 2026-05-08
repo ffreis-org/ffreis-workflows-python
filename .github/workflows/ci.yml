@@ -22,6 +22,7 @@ concurrency:
 
 jobs:
   workflows-policy:
+    timeout-minutes: 15
     permissions:
       contents: read
       actions: read
@@ -29,6 +30,7 @@ jobs:
     uses: FelipeFuhr/ffreis-workflows-general/.github/workflows/general-workflows-policy.yml@01e2b12e992621fecf074b8a202f66044196f3bf # v1.0.4
 
   codeql-actions:
+    timeout-minutes: 30
     permissions:
       contents: read
       actions: read
@@ -40,6 +42,7 @@ jobs:
       upload-sarif: false
 
   fmt:
+    timeout-minutes: 15
     permissions:
       contents: read
       actions: read
@@ -49,6 +52,7 @@ jobs:
       working-directory: examples/hello
 
   lint:
+    timeout-minutes: 15
     permissions:
       contents: read
       actions: read
@@ -58,6 +62,8 @@ jobs:
       working-directory: examples/hello
 
   test:
+    timeout-minutes: 30
+    if: ${{ !github.event.pull_request.draft }}
     permissions:
       contents: read
       actions: read
@@ -67,6 +73,7 @@ jobs:
       working-directory: examples/hello
 
   build:
+    timeout-minutes: 30
     permissions:
       contents: read
       actions: read
@@ -76,6 +83,7 @@ jobs:
       working-directory: examples/hello
 
   lock-sync:
+    timeout-minutes: 15
     permissions:
       contents: read
       actions: read
@@ -85,6 +93,7 @@ jobs:
       working-directory: examples/hello
 
   security:
+    timeout-minutes: 30
     permissions:
       contents: read
       actions: read
@@ -95,6 +104,7 @@ jobs:
       fail-on-vuln: false
 
   semgrep:
+    timeout-minutes: 30
     permissions:
       contents: read
       actions: read
@@ -104,6 +114,8 @@ jobs:
       working-directory: examples/hello
 
   hypothesis:
+    timeout-minutes: 30
+    if: ${{ !github.event.pull_request.draft }}
     permissions:
       contents: read
       actions: read
@@ -114,6 +126,8 @@ jobs:
       test-dir: tests/hypothesis_tests
 
   coverage:
+    timeout-minutes: 30
+    if: ${{ !github.event.pull_request.draft }}
     permissions:
       contents: read
       actions: read
@@ -125,6 +139,7 @@ jobs:
       CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
 
   sonar:
+    timeout-minutes: 30
     if: github.event_name != 'pull_request' || github.event.pull_request.head.repo.fork == false
     permissions:
       contents: read
@@ -137,6 +152,7 @@ jobs:
       SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
 
   docs:
+    timeout-minutes: 15
     permissions:
       contents: read
       actions: read
@@ -146,6 +162,8 @@ jobs:
       working-directory: examples/hello
 
   bench:
+    timeout-minutes: 30
+    if: ${{ !github.event.pull_request.draft }}
     permissions:
       contents: read
       actions: read
@@ -155,6 +173,8 @@ jobs:
       working-directory: examples/hello
 
   mutation:
+    timeout-minutes: 30
+    if: ${{ !github.event.pull_request.draft }}
     permissions:
       contents: read
       actions: read
@@ -166,6 +186,7 @@ jobs:
       threshold: 60
 
   container:
+    timeout-minutes: 30
     uses: ./.github/workflows/python-container.yml
     with:
       image-name: hello-example

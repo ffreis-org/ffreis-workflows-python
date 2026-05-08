@@ -25,6 +25,7 @@ permissions:
 
 jobs:
   fmt:
+    timeout-minutes: 15
     name: Ruff Format Check
     runs-on: ubuntu-latest
 
