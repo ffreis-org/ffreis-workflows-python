@@ -69,7 +69,14 @@ jobs:
           UV_EXTRAS: ${{ inputs.uv-extras }}
         run: |
           set -euo pipefail
-          uv sync --frozen --extra "$UV_EXTRAS"
+          # Build per-extra flags so space-separated inputs like "dev api grpc"
+          # become `--extra dev --extra api --extra grpc`. Passing the whole
+          # string as one --extra value made uv reject it as invalid.
+          extra_args=()
+          for e in $UV_EXTRAS; do
+            extra_args+=(--extra "$e")
+          done
+          uv sync --frozen "${extra_args[@]}"
 
       - name: Run tests
         env:
