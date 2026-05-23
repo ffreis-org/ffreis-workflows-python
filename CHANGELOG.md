@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.1.0](https://github.com/FelipeFuhr/ffreis-workflows-python/compare/v1.0.1...v1.1.0) (2026-05-23)
+
+
+### Features
+
+* **uv:** add uv-groups input for PEP 735 dependency-groups ([#45](https://github.com/FelipeFuhr/ffreis-workflows-python/issues/45)) ([10711ea](https://github.com/FelipeFuhr/ffreis-workflows-python/commit/10711ea24d1d29b8c1fe8d8823e5ad6ba52adf78))
+
 ## [1.0.1](https://github.com/FelipeFuhr/ffreis-workflows-python/compare/v1.0.0...v1.0.1) (2026-05-23)
 
 
