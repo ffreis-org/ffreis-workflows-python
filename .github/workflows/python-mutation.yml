@@ -85,14 +85,21 @@ jobs:
       - name: Install deps
         env:
           UV_EXTRAS: ${{ inputs.uv-extras }}
+          UV_GROUPS: ${{ inputs.uv-groups }}
         run: |
           set -euo pipefail
-          # Build per-extra flags so space-separated inputs like "dev api grpc"
-          # become `--extra dev --extra api --extra grpc`. Passing the whole
-          # string as one --extra value made uv reject it as invalid.
+          # Build per-extra/per-group flags from space-separated inputs so
+          # "dev api grpc" becomes `--extra dev --extra api --extra grpc` (and
+          # similarly for --group). Passing the whole string as one value
+          # made uv reject it as invalid. Supports both legacy
+          # [project.optional-dependencies] (extras) and PEP 735
+          # [dependency-groups] (groups).
           extra_args=()
           for e in $UV_EXTRAS; do
             extra_args+=(--extra "$e")
+          done
+          for g in $UV_GROUPS; do
+            extra_args+=(--group "$g")
           done
           uv sync --frozen "${extra_args[@]}"
 
