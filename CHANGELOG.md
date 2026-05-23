@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.0.1](https://github.com/FelipeFuhr/ffreis-workflows-python/compare/v1.0.0...v1.0.1) (2026-05-23)
+
+
+### Bug Fixes
+
+* **uv:** split space-separated extras into multiple --extra flags ([#43](https://github.com/FelipeFuhr/ffreis-workflows-python/issues/43)) ([de439b4](https://github.com/FelipeFuhr/ffreis-workflows-python/commit/de439b42ffc1cd92aaac696193a71f572634133a))
+
 ## 1.0.0 (2026-05-06)
 
 
