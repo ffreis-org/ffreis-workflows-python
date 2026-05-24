@@ -32,12 +32,11 @@ on:
         type: string
         default: "uv build"
 
-permissions:
-  contents: read
-
 jobs:
   matrix-build:
     name: Build (${{ matrix.python }} / ${{ matrix.os }})
+    permissions:
+      contents: read
     runs-on: ${{ matrix.os }}
     timeout-minutes: 35
 

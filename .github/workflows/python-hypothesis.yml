@@ -32,12 +32,11 @@ on:
         type: string
         default: "ci"
 
-permissions:
-  contents: read
-
 jobs:
   hypothesis:
     name: Hypothesis Property Tests
+    permissions:
+      contents: read
     runs-on: ubuntu-latest
     timeout-minutes: ${{ inputs.timeout-minutes }}
 

@@ -28,12 +28,11 @@ on:
         type: string
         default: ""
 
-permissions:
-  contents: read
-
 jobs:
   lint:
     name: Ruff + Mypy
+    permissions:
+      contents: read
     runs-on: ubuntu-latest
 
     defaults:

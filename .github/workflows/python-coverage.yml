@@ -42,12 +42,11 @@ on:
       CODECOV_TOKEN:
         required: false
 
-permissions:
-  contents: read
-
 jobs:
   coverage:
     name: Unit Coverage
+    permissions:
+      contents: read
     runs-on: ubuntu-latest
 
     defaults:

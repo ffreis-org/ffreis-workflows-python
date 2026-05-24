@@ -43,12 +43,11 @@ on:
       SONAR_TOKEN:
         required: true
 
-permissions:
-  contents: read
-
 jobs:
   sonar:
     name: SonarCloud
+    permissions:
+      contents: read
     runs-on: ubuntu-latest
     if: vars.SONAR_ENABLED != 'false'
 

@@ -12,12 +12,11 @@ on:
         type: string
         default: "."
 
-permissions:
-  contents: read
-
 jobs:
   lock-sync:
     name: uv lock --check
+    permissions:
+      contents: read
     runs-on: ubuntu-latest
 
     defaults:
