@@ -20,12 +20,11 @@ on:
         type: string
         default: ""
 
-permissions:
-  contents: read
-
 jobs:
   deps-security:
     name: pip-audit
+    permissions:
+      contents: read
     runs-on: ubuntu-latest
 
     defaults:

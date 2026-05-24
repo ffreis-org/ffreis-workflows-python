@@ -44,12 +44,11 @@ on:
         description: "Achieved mutation score (integer, 0–100)"
         value: ${{ jobs.mutation.outputs.score }}
 
-permissions:
-  contents: read
-
 jobs:
   mutation:
     name: Mutation score (mutmut)
+    permissions:
+      contents: read
     runs-on: ubuntu-latest
     timeout-minutes: ${{ inputs.timeout-minutes }}
     outputs:

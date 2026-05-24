@@ -20,12 +20,11 @@ on:
         type: string
         default: ""
 
-permissions:
-  contents: read
-
 jobs:
   container-build:
     name: Container Build
+    permissions:
+      contents: read
     runs-on: ubuntu-latest
 
     steps:

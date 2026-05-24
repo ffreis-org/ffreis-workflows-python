@@ -24,12 +24,11 @@ on:
         type: string
         default: ""
 
-permissions:
-  contents: read
-
 jobs:
   fmt:
     name: Ruff Format Check
+    permissions:
+      contents: read
     runs-on: ubuntu-latest
 
     defaults:

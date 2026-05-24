@@ -28,12 +28,11 @@ on:
         type: number
         default: 60
 
-permissions:
-  contents: read
-
 jobs:
   bench:
     name: pytest-benchmark
+    permissions:
+      contents: read
     runs-on: ubuntu-latest
     timeout-minutes: ${{ inputs.timeout-minutes }}
 

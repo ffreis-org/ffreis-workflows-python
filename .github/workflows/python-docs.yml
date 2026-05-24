@@ -20,12 +20,11 @@ on:
         type: string
         default: "uv run mkdocs build --strict"
 
-permissions:
-  contents: read
-
 jobs:
   docs:
     name: Build Docs
+    permissions:
+      contents: read
     runs-on: ubuntu-latest
 
     defaults:

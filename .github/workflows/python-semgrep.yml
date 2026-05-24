@@ -12,12 +12,11 @@ on:
         type: string
         default: "auto"
 
-permissions:
-  contents: read
-
 jobs:
   semgrep:
     name: Semgrep SAST
+    permissions:
+      contents: read
     runs-on: ubuntu-latest
 
     defaults:

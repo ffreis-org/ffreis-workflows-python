@@ -4,11 +4,6 @@ on:
   pull_request:
     branches: [main]
 
-permissions:
-  contents: read
-  actions: read
-  security-events: write
-
 # Validates that every workflow defined in this library functions correctly
 # against the minimal example app in examples/hello/.
 #
@@ -38,8 +33,6 @@ jobs:
   fmt:
     permissions:
       contents: read
-      actions: read
-      security-events: write
     uses: ./.github/workflows/python-fmt.yml
     with:
       working-directory: examples/hello
@@ -47,8 +40,6 @@ jobs:
   lint:
     permissions:
       contents: read
-      actions: read
-      security-events: write
     uses: ./.github/workflows/python-lint.yml
     with:
       working-directory: examples/hello
@@ -56,8 +47,6 @@ jobs:
   test:
     permissions:
       contents: read
-      actions: read
-      security-events: write
     uses: ./.github/workflows/python-test.yml
     with:
       working-directory: examples/hello
@@ -65,8 +54,6 @@ jobs:
   build:
     permissions:
       contents: read
-      actions: read
-      security-events: write
     uses: ./.github/workflows/python-build.yml
     with:
       working-directory: examples/hello
@@ -74,8 +61,6 @@ jobs:
   lock-sync:
     permissions:
       contents: read
-      actions: read
-      security-events: write
     uses: ./.github/workflows/python-lock-sync.yml
     with:
       working-directory: examples/hello
@@ -83,8 +68,6 @@ jobs:
   security:
     permissions:
       contents: read
-      actions: read
-      security-events: write
     uses: ./.github/workflows/python-security.yml
     with:
       working-directory: examples/hello
@@ -93,8 +76,6 @@ jobs:
   semgrep:
     permissions:
       contents: read
-      actions: read
-      security-events: write
     uses: ./.github/workflows/python-semgrep.yml
     with:
       working-directory: examples/hello
@@ -102,8 +83,6 @@ jobs:
   hypothesis:
     permissions:
       contents: read
-      actions: read
-      security-events: write
     uses: ./.github/workflows/python-hypothesis.yml
     with:
       working-directory: examples/hello
@@ -112,8 +91,6 @@ jobs:
   coverage:
     permissions:
       contents: read
-      actions: read
-      security-events: write
     uses: ./.github/workflows/python-coverage.yml
     with:
       working-directory: examples/hello
@@ -124,8 +101,6 @@ jobs:
     if: github.event_name != 'pull_request' || github.event.pull_request.head.repo.fork == false
     permissions:
       contents: read
-      actions: read
-      security-events: write
     uses: ./.github/workflows/python-sonar.yml
     with:
       working-directory: examples/hello
@@ -135,8 +110,6 @@ jobs:
   docs:
     permissions:
       contents: read
-      actions: read
-      security-events: write
     uses: ./.github/workflows/python-docs.yml
     with:
       working-directory: examples/hello
@@ -144,8 +117,6 @@ jobs:
   bench:
     permissions:
       contents: read
-      actions: read
-      security-events: write
     uses: ./.github/workflows/python-bench.yml
     with:
       working-directory: examples/hello
@@ -153,8 +124,6 @@ jobs:
   mutation:
     permissions:
       contents: read
-      actions: read
-      security-events: write
     uses: ./.github/workflows/python-mutation.yml
     with:
       working-directory: examples/hello
@@ -162,6 +131,8 @@ jobs:
       threshold: 60
 
   container:
+    permissions:
+      contents: read
     uses: ./.github/workflows/python-container.yml
     with:
       image-name: hello-example
