@@ -19,9 +19,15 @@ on:
         description: "Newline-separated build-arg pairs (KEY=VALUE)"
         type: string
         default: ""
+      run_on_draft:
+        description: "Run even on draft PRs (default: skip on draft to save CI minutes)"
+        required: false
+        type: boolean
+        default: false
 
 jobs:
   container-build:
+    if: ${{ inputs.run_on_draft || vars.CI_RUN_ON_DRAFT == 'true' || github.event_name != 'pull_request' || github.event.pull_request.draft == false }}
     name: Container Build
     permissions:
       contents: read
