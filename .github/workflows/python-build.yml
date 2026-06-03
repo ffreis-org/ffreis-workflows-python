@@ -10,7 +10,7 @@ on:
       os-list:
         description: "JSON array of OS runners to test on"
         type: string
-        default: '["ubuntu-latest","macos-latest"]'
+        default: '["ubuntu-latest"]'
       working-directory:
         description: "Directory to run steps in"
         type: string
