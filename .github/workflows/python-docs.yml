@@ -15,6 +15,10 @@ on:
         description: "uv extras to install for docs"
         type: string
         default: "docs"
+      uv-groups:
+        description: "uv dependency groups to install (space-separated, e.g. 'dev docs')"
+        type: string
+        default: ""
       docs-command:
         description: "Command to build the documentation"
         type: string

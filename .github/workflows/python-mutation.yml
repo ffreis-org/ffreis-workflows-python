@@ -27,6 +27,10 @@ on:
         description: "uv extras group that contains mutmut (e.g. dev)"
         type: string
         default: "dev"
+      uv-groups:
+        description: "uv dependency groups to install (space-separated, e.g. 'dev docs')"
+        type: string
+        default: ""
       paths-to-mutate:
         description: "Source path(s) for mutmut to mutate (e.g. src/mypackage)"
         type: string
