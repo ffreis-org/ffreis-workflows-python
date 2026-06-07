@@ -1,0 +1,38 @@
+name: Code Quality (SonarCloud)
+
+on:
+  workflow_dispatch:
+  pull_request:
+    types: [opened, synchronize, reopened, ready_for_review]
+    paths:
+      - "**/*.yml"
+      - "**/*.yaml"
+      - "**/*.py"
+      - "sonar-project.properties"
+      - ".github/workflows/**"
+  push:
+    branches: [main]
+    paths:
+      - "**/*.yml"
+      - "**/*.yaml"
+      - "**/*.py"
+      - "sonar-project.properties"
+      - ".github/workflows/**"
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  sonar:
+    if: ${{ !github.event.pull_request.draft && (github.event_name != 'pull_request' || github.event.pull_request.head.repo.fork == false) }}
+    permissions:
+      contents: read
+    uses: FelipeFuhr/ffreis-workflows-general/.github/workflows/general-sonarcloud.yml@bb6031b2cbacb1f231382648ec4ab0d5512ad85d # main
+    with:
+      working-directory: "."
+    secrets:
+      SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
