@@ -92,4 +92,4 @@ jobs:
         run: |
           set -euo pipefail
           read -r -a source_dirs_arr <<< "$SOURCE_DIRS"
-          uv run ruff format --check "${source_dirs_arr[@]}"
+          uv run --frozen ruff format --check "${source_dirs_arr[@]}"

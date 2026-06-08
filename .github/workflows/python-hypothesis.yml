@@ -100,4 +100,4 @@ jobs:
           TEST_DIR: ${{ inputs.test-dir }}
         run: |
           set -euo pipefail
-          uv run --frozen pytest "$TEST_DIR"
+          uv run --frozen --no-build pytest "$TEST_DIR"
