@@ -7,6 +7,8 @@ on:
     branches: [main, master]
   schedule:
     - cron: "56 15 7 * *"  # monthly scattered (was: 0 6 * * 1)
+  workflow_dispatch:
+
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
@@ -39,15 +41,17 @@ jobs:
       contents: read
       actions: read
       security-events: write
-    uses: FelipeFuhr/ffreis-workflows-general/.github/workflows/general-gitleaks.yml@caa797cc7baec52e99f21b86f532a4b7c88cf4fa # fix/grype-install-outside-scan-path
+    uses: FelipeFuhr/ffreis-workflows-general/.github/workflows/general-gitleaks.yml@ce7169b36bd25b1c4c0c8077aa78ecde6d6ca7d5  # v1.6.0
     with:
       working-directory: "."
       scan-history: true
       upload-sarif: ${{ github.event_name != 'pull_request' || github.event.pull_request.head.repo.fork == false }}
 
+      runner: ${{ (github.event_name == 'pull_request' || github.event_name == 'workflow_dispatch') && '["ubuntu-latest"]' || '["self-hosted","spot","linux","x64"]' }}
   trivy-fs:
     needs: changes
     if: |
+      (vars.FLEET_SPOT_CI != 'true' || github.event_name == 'workflow_dispatch') &&
       always() && (
         needs.changes.result == 'skipped' ||
         needs.changes.outputs.code == 'true'
@@ -56,15 +60,17 @@ jobs:
       contents: read
       actions: read
       security-events: write
-    uses: FelipeFuhr/ffreis-workflows-general/.github/workflows/general-scan-trivy-fs.yml@caa797cc7baec52e99f21b86f532a4b7c88cf4fa # fix/grype-install-outside-scan-path
+    uses: FelipeFuhr/ffreis-workflows-general/.github/workflows/general-scan-trivy-fs.yml@ce7169b36bd25b1c4c0c8077aa78ecde6d6ca7d5  # v1.6.0
     with:
       scan-ref: "."
       upload-sarif: ${{ github.event_name != 'pull_request' || github.event.pull_request.head.repo.fork == false }}
       fail-on-vuln: ${{ github.event_name != 'pull_request' }}
 
+      runner: ${{ (github.event_name == 'pull_request' || github.event_name == 'workflow_dispatch') && '["ubuntu-latest"]' || '["self-hosted","spot","linux","x64"]' }}
   grype-fs:
     needs: changes
     if: |
+      (vars.FLEET_SPOT_CI != 'true' || github.event_name == 'workflow_dispatch') &&
       always() && (
         needs.changes.result == 'skipped' ||
         needs.changes.outputs.code == 'true'
@@ -73,15 +79,17 @@ jobs:
       contents: read
       actions: read
       security-events: write
-    uses: FelipeFuhr/ffreis-workflows-general/.github/workflows/general-scan-grype-fs.yml@caa797cc7baec52e99f21b86f532a4b7c88cf4fa # fix/grype-install-outside-scan-path
+    uses: FelipeFuhr/ffreis-workflows-general/.github/workflows/general-scan-grype-fs.yml@ce7169b36bd25b1c4c0c8077aa78ecde6d6ca7d5  # v1.6.0
     with:
       path: "."
       upload-sarif: ${{ github.event_name != 'pull_request' || github.event.pull_request.head.repo.fork == false }}
       fail-on-vuln: ${{ github.event_name != 'pull_request' }}
 
+      runner: ${{ (github.event_name == 'pull_request' || github.event_name == 'workflow_dispatch') && '["ubuntu-latest"]' || '["self-hosted","spot","linux","x64"]' }}
   osv:
     needs: changes
     if: |
+      (vars.FLEET_SPOT_CI != 'true' || github.event_name == 'workflow_dispatch') &&
       always() && (
         needs.changes.result == 'skipped' ||
         needs.changes.outputs.code == 'true'
@@ -90,7 +98,8 @@ jobs:
       contents: read
       actions: read
       security-events: write
-    uses: FelipeFuhr/ffreis-workflows-general/.github/workflows/general-osv-scanner.yml@caa797cc7baec52e99f21b86f532a4b7c88cf4fa # fix/grype-install-outside-scan-path
+    uses: FelipeFuhr/ffreis-workflows-general/.github/workflows/general-osv-scanner.yml@ce7169b36bd25b1c4c0c8077aa78ecde6d6ca7d5  # v1.6.0
     with:
       working-directory: "."
       upload-sarif: ${{ github.event_name != 'pull_request' || github.event.pull_request.head.repo.fork == false }}
+      runner: ${{ (github.event_name == 'pull_request' || github.event_name == 'workflow_dispatch') && '["ubuntu-latest"]' || '["self-hosted","spot","linux","x64"]' }}
