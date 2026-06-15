@@ -1,5 +1,14 @@
 # Changelog
 
+## [1.1.1](https://github.com/FelipeFuhr/ffreis-workflows-python/compare/v1.1.0...v1.1.1) (2026-06-15)
+
+
+### Bug Fixes
+
+* correct sonar projectKey to ffreis-workflows-python ([#65](https://github.com/FelipeFuhr/ffreis-workflows-python/issues/65)) ([e05d6dd](https://github.com/FelipeFuhr/ffreis-workflows-python/commit/e05d6dd81831750853e8f325f2d43574c1c2a7a2))
+* **grype:** bump workflows-general SHA to prevent self-scan CVEs ([#63](https://github.com/FelipeFuhr/ffreis-workflows-python/issues/63)) ([76f56c2](https://github.com/FelipeFuhr/ffreis-workflows-python/commit/76f56c2d6a1c8f1876b70163446062263ec0eb9e))
+* resolve SonarQube issues ([#68](https://github.com/FelipeFuhr/ffreis-workflows-python/issues/68)) ([70e48c5](https://github.com/FelipeFuhr/ffreis-workflows-python/commit/70e48c545f53900b8c2f50365cae378ee7253bf2))
+
 ## [1.1.0](https://github.com/FelipeFuhr/ffreis-workflows-python/compare/v1.0.1...v1.1.0) (2026-05-23)
 
 
