@@ -1,5 +1,9 @@
 # ffreis-platform-workflows-python
 
+<!-- ffreis-badges:start -->
+[![CI](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/FelipeFuhr/ffreis-badges/main/badges/ffreis-workflows-python/ci.json)](https://github.com/FelipeFuhr/ffreis-workflows-python/actions) [![Latest version](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/FelipeFuhr/ffreis-badges/main/badges/ffreis-workflows-python/version.json)](https://github.com/FelipeFuhr/ffreis-workflows-python/releases) [![License](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/FelipeFuhr/ffreis-badges/main/badges/ffreis-workflows-python/license.json)](https://github.com/FelipeFuhr/ffreis-workflows-python/blob/main/LICENSE)
+<!-- ffreis-badges:end -->
+
 Reusable GitHub Actions workflows for Python projects in the ffreis organisation.
 
 
