@@ -96,7 +96,7 @@ jobs:
         run: |
           set -euo pipefail
           read -r -a source_dirs_arr <<< "$SOURCE_DIRS"
-          uv run ruff check "${source_dirs_arr[@]}"
+          uv run --frozen ruff check "${source_dirs_arr[@]}"
 
       - name: Mypy
         env:
@@ -104,4 +104,4 @@ jobs:
         run: |
           set -euo pipefail
           read -r -a mypy_dirs_arr <<< "$MYPY_DIRS"
-          uv run mypy "${mypy_dirs_arr[@]}"
+          uv run --frozen mypy "${mypy_dirs_arr[@]}"

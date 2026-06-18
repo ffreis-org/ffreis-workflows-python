@@ -27,6 +27,10 @@ on:
         description: "uv extras group that contains mutmut (e.g. dev)"
         type: string
         default: "dev"
+      uv-groups:
+        description: "uv dependency groups to install (space-separated, e.g. 'dev docs')"
+        type: string
+        default: ""
       paths-to-mutate:
         description: "Source path(s) for mutmut to mutate (e.g. src/mypackage)"
         type: string
@@ -112,7 +116,7 @@ jobs:
       - name: Baseline test run
         run: |
           set -euo pipefail
-          uv run pytest -q --tb=short 2>&1 | tail -10
+          uv run --frozen --no-build pytest -q --tb=short 2>&1 | tail -10
 
       - name: Run mutation testing
         id: run
@@ -120,7 +124,7 @@ jobs:
           PATHS_TO_MUTATE: ${{ inputs.paths-to-mutate }}
         run: |
           set -euo pipefail
-          uv run mutmut run \
+          uv run --frozen --no-build mutmut run \
             --paths-to-mutate "$PATHS_TO_MUTATE" \
             || true   # mutmut exits 1 when mutants survive; score check is below
 
