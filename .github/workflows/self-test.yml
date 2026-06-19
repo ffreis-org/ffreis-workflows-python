@@ -12,6 +12,8 @@ on:
 # but runs on all other events and fails if the token is absent.
 
 
+permissions: {}
+
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: true

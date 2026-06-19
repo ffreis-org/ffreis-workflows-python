@@ -8,6 +8,8 @@ on:
   schedule:
     - cron: "56 15 7 * *"  # monthly scattered (was: 0 6 * * 1)
 
+permissions: {}
+
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: true
