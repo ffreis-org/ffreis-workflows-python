@@ -40,6 +40,10 @@ on:
         description: "Space-separated sibling repos to clone before uv sync. Format: 'reponame' (clones to ../reponame) or 'reponame:relative-path' for non-standard paths."
         type: string
         default: ""
+      coverage-min:
+        description: "Minimum coverage percentage required (0 = no enforcement). Passed as --cov-fail-under to pytest."
+        type: number
+        default: 0
 
 jobs:
   test:
@@ -120,7 +124,12 @@ jobs:
         env:
           PYTEST_ARGS: ${{ inputs.pytest-args }}
           TEST_DIR: ${{ inputs.test-dir }}
+          COVERAGE_MIN: ${{ inputs.coverage-min }}
         run: |
           set -euo pipefail
           read -r -a pytest_args_arr <<< "$PYTEST_ARGS"
-          uv run --frozen pytest "${pytest_args_arr[@]}" "$TEST_DIR"
+          cov_args=()
+          if [[ "$COVERAGE_MIN" -gt 0 ]]; then
+            cov_args+=(--cov --cov-fail-under="$COVERAGE_MIN")
+          fi
+          uv run --frozen pytest "${pytest_args_arr[@]}" "${cov_args[@]}" "$TEST_DIR"
