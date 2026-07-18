@@ -44,6 +44,13 @@ on:
         description: "Minimum coverage percentage required (0 = no enforcement). Passed as --cov-fail-under to pytest."
         type: number
         default: 0
+      runner:
+        description: |
+          JSON-encoded runner label(s). Default: GitHub-hosted ubuntu-latest.
+          Self-hosted homelab box (private repos only): '["self-hosted","local"]'
+        required: false
+        type: string
+        default: '["ubuntu-latest"]'
 
 jobs:
   test:
@@ -51,7 +58,7 @@ jobs:
     name: Pytest
     permissions:
       contents: read
-    runs-on: ubuntu-latest
+    runs-on: ${{ fromJson(inputs.runner) }}
     timeout-minutes: ${{ inputs.timeout-minutes }}
 
     defaults:

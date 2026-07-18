@@ -32,6 +32,13 @@ on:
         description: "Space-separated sibling repos to clone before uv sync. Format: 'reponame' (clones to ../reponame) or 'reponame:relative-path' for non-standard paths."
         type: string
         default: ""
+      runner:
+        description: |
+          JSON-encoded runner label(s). Default: GitHub-hosted ubuntu-latest.
+          Self-hosted homelab box (private repos only): '["self-hosted","local"]'
+        required: false
+        type: string
+        default: '["ubuntu-latest"]'
 
 jobs:
   fmt:
@@ -39,7 +46,7 @@ jobs:
     name: Ruff Format Check
     permissions:
       contents: read
-    runs-on: ubuntu-latest
+    runs-on: ${{ fromJson(inputs.runner) }}
     timeout-minutes: 30
 
     defaults:
