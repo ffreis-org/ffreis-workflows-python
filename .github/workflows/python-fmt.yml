@@ -40,6 +40,11 @@ on:
         type: string
         default: '["ubuntu-latest"]'
 
+    secrets:
+      FLEET_READ_TOKEN:
+        description: "Fleet-wide read PAT for cloning private sibling repos (optional; falls back to unauthenticated clone)."
+        required: false
+
 jobs:
   fmt:
     if: ${{ inputs.run_on_draft || vars.CI_RUN_ON_DRAFT == 'true' || github.event_name != 'pull_request' || github.event.pull_request.draft == false }}
@@ -75,6 +80,13 @@ jobs:
         if: ${{ inputs.sibling-repos != '' }}
         env:
           SIBLING_REPOS: ${{ inputs.sibling-repos }}
+          # scan-fix(org-migration): fleet repos moved FelipeFuhr -> ffreis-org;
+          # sibling repos are private, so an unauthenticated clone 404s even
+          # with the right org. FLEET_READ_TOKEN is the fleet-wide read PAT
+          # (quality-kit/scripts/deploy-pats.sh); callers pass it via
+          # `secrets: inherit`. Falls back to an unauthenticated clone (works
+          # for public repos) when the secret isn't set.
+          FLEET_READ_TOKEN: ${{ secrets.FLEET_READ_TOKEN }}
         run: |
           set -euo pipefail
           for entry in $SIBLING_REPOS; do
@@ -86,7 +98,12 @@ jobs:
               target="$GITHUB_WORKSPACE/../$repo"
             fi
             mkdir -p "$(dirname "$target")"
-            git clone --depth=1 "https://github.com/FelipeFuhr/${repo}.git" "$target"
+            if [[ -n "$FLEET_READ_TOKEN" ]]; then
+              clone_url="https://x-access-token:${FLEET_READ_TOKEN}@github.com/ffreis-org/${repo}.git"
+            else
+              clone_url="https://github.com/ffreis-org/${repo}.git"
+            fi
+            git clone --depth=1 "$clone_url" "$target"
           done
 
       - name: Assert uv.lock exists
