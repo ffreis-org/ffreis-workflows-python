@@ -109,7 +109,18 @@ jobs:
           TEST_DIR: ${{ inputs.test-dir }}
         run: |
           set -euo pipefail
-          uv run --frozen --no-build pytest -q "$TEST_DIR"
+          # scan-fix(sonar:S8541): --no-build → --no-sync — --no-build refuses
+          # to build the project's own editable distribution ("<pkg> @
+          # editable+."), crashing every caller with a path-source/editable
+          # local project ("marked as --no-build but has no binary
+          # distribution" — see python-mutation.yml / PR #89 for the full
+          # repro; this exact step is what broke this repo's own self-test
+          # against examples/hello). The preceding "Install deps (frozen)"
+          # step already ran an unrestricted `uv sync --frozen`, so the venv
+          # is already built and lock-consistent; --no-sync makes `uv run`
+          # use it as-is with zero install/build activity, preserving
+          # S8541's no-source-build intent without touching the local project.
+          uv run --frozen --no-sync pytest -q "$TEST_DIR"
 
       - name: Build package
         env:

@@ -167,7 +167,19 @@ jobs:
       - name: Baseline test run
         run: |
           set -euo pipefail
-          uv run --frozen --no-build pytest -q --tb=short 2>&1 | tail -10
+          # scan-fix(sonar:S8541): --no-build → --no-sync — the project itself
+          # is always installed editable ("<pkg> @ editable+."), and uv's
+          # --no-build refuses to build even that local, first-party editable
+          # distribution ("marked as --no-build but has no binary
+          # distribution"), crashing every caller with a path-source/editable
+          # dependency (reproduced on ffreis-foundry-registry, ffreis-content-
+          # mocks). The prior "Install deps" step already ran a full
+          # `uv sync --frozen` (no --no-build there), so the venv is already
+          # built and consistent with uv.lock; --no-sync tells `uv run` to use
+          # that venv as-is with zero install/build activity, which satisfies
+          # S8541's intent (no source build, no setup-script execution) more
+          # strictly than --no-build did, without touching the local project.
+          uv run --frozen --no-sync pytest -q --tb=short 2>&1 | tail -10
 
       - name: Run mutation testing
         id: run
@@ -175,7 +187,12 @@ jobs:
           PATHS_TO_MUTATE: ${{ inputs.paths-to-mutate }}
         run: |
           set -euo pipefail
-          uv run --frozen --no-build mutmut run \
+          # scan-fix(sonar:S8541): --no-build → --no-sync — see the Baseline
+          # test run step above for the full explanation. mutmut re-invokes
+          # pytest against the already-installed editable source on every
+          # mutant; --no-sync keeps that fixed rather than re-triggering the
+          # same --no-build crash on the first mutant.
+          uv run --frozen --no-sync mutmut run \
             --paths-to-mutate "$PATHS_TO_MUTATE" \
             || true   # mutmut exits 1 when mutants survive; score check is below
 
