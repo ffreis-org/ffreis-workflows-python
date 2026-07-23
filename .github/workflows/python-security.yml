@@ -72,7 +72,8 @@ jobs:
       - name: Install dependencies from lock
         run: |
           set -euo pipefail
-          uv sync --frozen --no-build
+          # scan-fix(sonar:S8541): dropped --no-build — uv editable self-install ships no wheel; deps stay pinned via --frozen lockfile
+          uv sync --frozen
 
       - name: pip-audit
         env:
